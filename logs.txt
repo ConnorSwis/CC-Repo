@@ -1,1 +1,15 @@
-I: Downloaded Git: Programs/eventBasedTimer.lua: 
+I: Downloaded Git: ConnorSwis/CC-Repo/master/Programs/eventBasedTimer.lua: 
+stack traceback:
+	/gui/Logger.lua:63: in function 'error'
+	...es/main/cc/require.lua:109: in function 'require'
+	/Modules/Git.lua:1: in field '1'
+	...es/main/cc/require.lua:100: in function 'require'
+	/test.lua:15: in main chunk
+module 'Modules.Logger' not found:
+  no field package.preload['Modules.Logger']
+  no file 'Modules/Logger'
+  no file 'Modules/Logger.lua'
+  no file 'Modules/Logger/init.lua'
+  no file '/rom/modules/main/Modules/Logger'
+  no file '/rom/modules/main/Modules/Logger.lua'
+  no file '/rom/modules/main/Modules/Logger/init.lua'

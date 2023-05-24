@@ -1,23 +1,50 @@
-local Dbg = require("Modules.Logger")
+local gitUrl = "https://raw.githubusercontent.com/"
 
-Dbg.setOutputTerminal(term.current())
+local Git = {}
 
-Git = {}
-
-function Git.hasGit(fp)
-    if not fs.exists(fp) then
-        local response = http.get("https://raw.githubusercontent.com/ConnorSwis/CC-Repo/master/" .. fp)
-        if response then
-            local contents = response.readAll()
-            response.close()
-            local file = fs.open(fp, "w")
-            file.write(contents)
-            file.close()
-            Dbg.logI("Downloaded Git: " .. fp)
-        else
-            error("Could not download Git: " .. fp)
-        end
+---download file from gitlab and return contents
+---@param repo string user/repo/branch
+---@param fp string file path and location on git
+---@return string | nil contents response or nil on failure
+function Git.downloadFileFromGit(repo, fp)
+    local url = gitUrl .. repo .. fp
+    local response = http.get(url)
+    if response then
+        local contents = response.readAll()
+        response.close()
+        return contents
+    else
+        return nil
     end
 end
+
+---download file from git.
+---@param repo string user/repo/branch
+---@param fp string file with filepath to download
+function Git.getFile(repo, fp)
+    print("Downloading " .. file)
+    local response = Git.downloadFileFromGit(repo, fp)
+    if response == nil then
+        error("something went wrong whilst downloading " .. fp)
+    end
+    local fh = fs.open(fp, "w")
+    fh.write(response)
+    fh.close()
+end
+
+---check if file exists and if it doesnt download from file.
+---@param repo string user/repo/branch
+---@param fp string file with filepath to download
+function Git.getFileIfNeeded(repo, fp)
+    if type(fp) ~= "string" or type(repo) ~= "string" then
+        error("failed to get file from git, invalid argument " .. fp, 1)
+    end
+    if fs.exists(fp) then
+        return
+    end
+    Git.getFile(repo, fp)
+end
+
+
 
 return Git
