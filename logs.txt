@@ -13,3 +13,51 @@ module 'Modules.Logger' not found:
   no file '/rom/modules/main/Modules/Logger'
   no file '/rom/modules/main/Modules/Logger.lua'
   no file '/rom/modules/main/Modules/Logger/init.lua'
+stack traceback:
+	/gui/Logger.lua:63: in function 'error'
+	...es/main/cc/require.lua:109: in function 'require'
+	/test.lua:20: in main chunk
+module 'Modules.Logger' not found:
+  no field package.preload['Modules.Logger']
+  no file 'Modules/Logger'
+  no file 'Modules/Logger.lua'
+  no file 'Modules/Logger/init.lua'
+  no file '/rom/modules/main/Modules/Logger'
+  no file '/rom/modules/main/Modules/Logger.lua'
+  no file '/rom/modules/main/Modules/Logger/init.lua'
+stack traceback:
+	/gui/Logger.lua:63: in function 'error'
+	...es/main/cc/require.lua:109: in function 'require'
+	/test.lua:20: in main chunk
+module 'Modules.Logger' not found:
+  no field package.preload['Modules.Logger']
+  no file 'Modules/Logger'
+  no file 'Modules/Logger.lua'
+  no file 'Modules/Logger/init.lua'
+  no file '/rom/modules/main/Modules/Logger'
+  no file '/rom/modules/main/Modules/Logger.lua'
+  no file '/rom/modules/main/Modules/Logger/init.lua'
+stack traceback:
+	/gui/Logger.lua:63: in function 'error'
+	...es/main/cc/require.lua:109: in function 'require'
+	/test.lua:22: in main chunk
+module 'Modules.Logger' not found:
+  no field package.preload['Modules.Logger']
+  no file 'Modules/Logger'
+  no file 'Modules/Logger.lua'
+  no file 'Modules/Logger/init.lua'
+  no file '/rom/modules/main/Modules/Logger'
+  no file '/rom/modules/main/Modules/Logger.lua'
+  no file '/rom/modules/main/Modules/Logger/init.lua'
+stack traceback:
+	/gui/Logger.lua:63: in function 'error'
+	...es/main/cc/require.lua:109: in function 'require'
+	/test.lua:24: in main chunk
+module 'Modules.Logger' not found:
+  no field package.preload['Modules.Logger']
+  no file 'Modules/Logger'
+  no file 'Modules/Logger.lua'
+  no file 'Modules/Logger/init.lua'
+  no file '/rom/modules/main/Modules/Logger'
+  no file '/rom/modules/main/Modules/Logger.lua'
+  no file '/rom/modules/main/Modules/Logger/init.lua'

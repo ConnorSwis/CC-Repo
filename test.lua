@@ -14,10 +14,9 @@ end
 
 local Git = require("Modules.Git")
 
-Git.downloadFileFromGit("ConnorSwis/CC-Repo/master/", "Modules/Logger.lua.lua")
-Git.downloadFileFromGit("ConnorSwis/CC-Repo/master/", "Programs/eventBasedTimer.lua")
+Git.getFileIfNeeded("ConnorSwis/CC-Repo/master/", "Modules/Logger.lua")
+Git.getFileIfNeeded("ConnorSwis/CC-Repo/master/", "Programs/eventBasedTimer.lua")
 
-local Dbg = require("Modules.Logger")
+local Dbg = require("Modules/Logger")
 
 Dbg.setOutputTerminal(term.current())
-

@@ -22,7 +22,7 @@ end
 ---@param repo string user/repo/branch
 ---@param fp string file with filepath to download
 function Git.getFile(repo, fp)
-    print("Downloading " .. file)
+    print("Downloading " .. fp)
     local response = Git.downloadFileFromGit(repo, fp)
     if response == nil then
         error("something went wrong whilst downloading " .. fp)
