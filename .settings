@@ -1,0 +1,4 @@
+{
+  export = "enderthing:key_chest_2",
+  import = "enderthing:key_chest_1",
+}
