@@ -2,6 +2,8 @@ local gitUrl = "https://raw.githubusercontent.com/"
 
 local Git = {}
 
+Git.userRepo = "ConnorSwis/CC-Repo/master/"
+
 ---download file from gitlab and return contents
 ---@param repo string user/repo/branch
 ---@param fp string file path and location on git
