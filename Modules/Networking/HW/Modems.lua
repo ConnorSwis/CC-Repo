@@ -4,19 +4,19 @@ Git.getFileIfNeeded(Git.userRepo, "Modules/Utils.lua")
 local Dbg = require("Modules.Logger")
 local Utils = require("Modules.Utils")
 
-local TAG = "HWM"
+local TAG = "HWModem"
 
--- Dbg.setLogLevel(TAG, Dbg.Levels.Warning)
+-- Dbg.setLogLevel(TAG, Dbg.Levels.Info)
 
----comment
+---create new networkingHardware for modem
 ---@param modemChannel number | nil number < 65535, if nil opens 65532
----@param modemsToUse table | nil
----@return ModemHardware instance
+---@param modemsToUse table | nil wrapped modems to use packaged in a table ( as returned from {peripheral.find("modem")}), if nil wraps all modems
+---@return ModemHardware instance created instance
 local function new(modemChannel, modemsToUse)
     -- PC.expect(1, modemChannel, "number", "nil")
     -- PC.expect(2, modemsToUse, "table", "nil")
 
-    Dbg.logV(TAG, "Created new modem hardware")
+    Dbg.logV(TAG, "created new modem hardware")
     local this = {
         modemNames = {},
         modems = {peripheral.find("modem")},
@@ -32,8 +32,8 @@ local function new(modemChannel, modemsToUse)
     ---@class ModemHardware
     local Modems = {}
 
-    ---Open a channel on all modems for instance
-    ---@param channel number you should know what a channel is
+    ---open a channel on all modems for instance
+    ---@param channel number channel to open
     local function openChannelOnModems(channel)
         Dbg.logV(TAG, "opening channel", channel)
         for _, mod in pairs(this.modems) do
@@ -41,8 +41,8 @@ local function new(modemChannel, modemsToUse)
         end
     end
 
-    ---Close a channel on all modems for instance
-    ---@param channel number you should know what a channel is
+    ---close a channel on all modems for instance
+    ---@param channel number channel to close
     local function closeChannelOnModems(channel)
         Dbg.logV(TAG, "closing channel", channel)
         for _, mod in pairs(this.modems) do
@@ -50,31 +50,30 @@ local function new(modemChannel, modemsToUse)
         end
     end
 
-    --- transmits a message
-    ---@param msg table
+    ---transmits a message
+    ---@param msg table msg being send
     function Modems.transmit(msg)
-        Dbg.logI(TAG, "transmitting message")
-        Dbg.logV(TAG, msg)
+        Dbg.logV(TAG, "transmitting message:", msg)
         for _, mod in pairs(this.modems) do
             mod.transmit(this.modemChannel, this.modemChannel, msg)
         end
     end
 
     ---receives a message, blocking
-    ---@return any message
+    ---@return table message message that was received
     function Modems.receive()
-        Dbg.logV(TAG, "waiting for message")
+        Dbg.logV(TAG, "Waiting for message")
         local eventInfo = {}
-        while type(eventInfo[5] ~= "table" or not Utils.findElementInTable(this.modemNames, eventInfo[2]) or
-                       eventInfo[3] ~= this.modemChannel) do
+        while type(eventInfo[5]) ~= "table" or not Utils.findElementInTable(this.modemNames, eventInfo[2]) or
+            eventInfo[3] ~= this.modemChannel do
             eventInfo = {os.pullEvent("modem_message")}
-            Dbg.logV(TAG, "received message")
+            Dbg.logV(TAG, "received msg", eventInfo)
         end
-        Dbg.logV(TAG, "received message for us")
-        return Modems
+        return eventInfo[5]
     end
 
     openChannelOnModems(this.modemChannel)
+
     return Modems
 end
 

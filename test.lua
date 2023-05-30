@@ -17,7 +17,7 @@ local Git = require("Modules.Git")
 Git.getFileIfNeeded(Git.userRepo, "Modules/Logger.lua")
 Git.getFileIfNeeded(Git.userRepo, "Modules/Networking/HW/Modems.lua")
 
-local Dbg = require("Modules/Logger")
+local Dbg = require("Modules.Logger")
 local Modems = require("Modules.Networking.HW.Modems")
 
 Dbg.setOutputTerminal(term.current())
@@ -25,9 +25,12 @@ Dbg.setOutputTerminal(term.current())
 local nwHardware = Modems.new()
 
 while true do
+    Dbg.logI("Server", "Started...")
     nwHardware.transmit({
-        msg = "ooga booga"
+        msg = "hello world"
     })
-    Dbg.logNoTag(nwHardware.receive())
+    local recMsg = nwHardware.receive()
+    Dbg.logNoTag(recMsg)
 end
+
 -- TODO "https://youtu.be/X1KLO0gHETY?t=4290"

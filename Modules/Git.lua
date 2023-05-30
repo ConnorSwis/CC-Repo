@@ -5,7 +5,7 @@ local Git = {}
 Git.userRepo = "ConnorSwis/CC-Repo/master/"
 
 ---download file from gitlab and return contents
----@param repo string user/repo/branch
+---@param repo string \"user/repo/branch\"
 ---@param fp string file path and location on git
 ---@return string | nil contents response or nil on failure
 function Git.downloadFileFromGit(repo, fp)
@@ -21,7 +21,7 @@ function Git.downloadFileFromGit(repo, fp)
 end
 
 ---download file from git.
----@param repo string user/repo/branch
+---@param repo string \"user/repo/branch\"
 ---@param fp string file with filepath to download
 function Git.getFile(repo, fp)
     print("Downloading " .. fp)
@@ -35,7 +35,7 @@ function Git.getFile(repo, fp)
 end
 
 ---check if file exists and if it doesnt download from file.
----@param repo string user/repo/branch
+---@param repo string \"user/repo/branch\"
 ---@param fp string file with filepath to download
 function Git.getFileIfNeeded(repo, fp)
     if type(fp) ~= "string" or type(repo) ~= "string" then

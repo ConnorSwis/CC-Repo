@@ -272,7 +272,10 @@ function Logger.log(tag, level, ...)
             local oldColor = term.getTextColor()
             term.setTextColor(level.color)
             -- print but strip out last newline
-            print(level.prefix .. ": " .. tag .. ": " .. text:sub(0, string.len(text) - 2))
+            if #tag > 1 then
+                tag = "[" .. tag .. "] "
+            end
+            print(level.prefix .. ": " .. tag .. text:sub(0, string.len(text) - 2))
             term.setTextColor(oldColor)
             term.redirect(oldTerm)
         end
